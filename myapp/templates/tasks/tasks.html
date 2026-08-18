@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<h1>Tasks</h1>
+<!-- Display a list of tasks with their title, description, and project name -->
+{# Display a clock icon for pending tasks and a checkmark icon for completed tasks #}
+
+{% for task in tasks %}
+    <article>
+        <h2>{% if task.done == False %}⏱️{% else %}✅{% endif %} {{ task.title }}</h2>
+        {% if task.done == False %}
+            <p>Tarea pendiente</p>
+        {% else %}
+            <p>Tarea realizada</p>
+        {% endif %}
+
+        <p>{{ task.description }}</p>
+        <p>Project: {{ task.project.name }}</p>
+        <button>
+            Delete
+        </button>
+        <button>
+            ✅ Done
+        </button>
+    </article>
+{% endfor %}
+
+{% endblock %}
